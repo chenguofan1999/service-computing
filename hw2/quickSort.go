@@ -1,38 +1,45 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
-func sort(a []int) []int {
+func quickSort(a []int) {
 	if len(a) <= 1 {
-		return a
+		return
 	}
 
 	lo, hi := 0, len(a)-1
-	pivot := a[lo]
-	i, j := lo+1, hi
 
-	for lo < hi {
-		for a[i] < pivot && i != hi {
-			i++
+	for i, _ := range a {
+		if a[i] < a[hi] {
+			a[lo], a[i] = a[i], a[lo]
+			lo++
 		}
-		for a[j] > pivot && j != lo {
-			j--
-		}
-		a[i], a[j] = a[j], a[i]
 	}
-	a[j], a[lo] = a[lo], a[j]
+	//[ < pivot ] <lo ( >= pivot) > [ >= pivot ] <hi == pivot>
 
-	sort(a[lo:j])
-	sort(a[j+1 : hi])
-	return a
+	a[lo], a[hi] = a[hi], a[lo]
+	//[ < pivot ] < a[lo] : pivot > [ >= pivot]
+
+	quickSort(a[:lo])   // pivot左边
+	quickSort(a[lo+1:]) // pivot右边
 }
 
 func main() {
-	a := []int{5, 4, 3, 2, 1}
-	sort(a)
-	fmt.Println(a)
-}
+	a := make([]int, 30)
 
-func printSlice(s []int) {
-	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+	// 根据当前时间生成rand的种子
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+
+	// 赋随机值
+	for i := 0; i < 30; i++ {
+		a[i] = r1.Intn(10000)
+	}
+
+	quickSort(a)
+	fmt.Println(a)
 }
