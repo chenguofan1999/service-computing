@@ -1,4 +1,4 @@
-# Service-Computing 2020 in SYSU
+# Service-Computing 2020 of SYSU
 
 ## HW2
 
