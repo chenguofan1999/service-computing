@@ -6,7 +6,11 @@
 
 **Level :** Learner project
 
-**Function :** Getting certain pages from a file or StdIn, print it in Stdout or send it to your other device. A page could consist of fixed number(you choose) of lines or marked by '**/f**'
+**Function :** 
+
+- Getting certain pages from a file or StdIn, 
+- print it in Stdout or send it to your other device. 
+- A page could consist of fixed number(you choose) of lines or marked by '**/f**'
 
 ## Usage 
 
