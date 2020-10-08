@@ -59,8 +59,8 @@ func processArgs() {
 	}
 
 	// check arg negative
-	if opt.StartPg < 0 {
-		fmt.Fprintf(os.Stderr, "Error: page number negative\n")
+	if opt.StartPg <= 0 {
+		fmt.Fprintf(os.Stderr, "Error: page number <= 0\n")
 		os.Exit(2)
 	}
 
@@ -87,42 +87,48 @@ func processArgs() {
 
 func processInput() {
 
-	// Determine writer
+	// write to dest or Stdout
 	var writer *bufio.Writer
 	if opt.Dest != "" {
-
+		// write to dest
 		cmd := exec.Command("lp", fmt.Sprintf("-d%s", opt.Dest))
 		stdinPipe, _ := cmd.StdinPipe()
 		defer stdinPipe.Close()
 		cmd.Stdout = os.Stdout
-
 		writer = bufio.NewWriter(stdinPipe)
 	} else {
+		//write to Stdout
 		writer = bufio.NewWriter(os.Stdout)
 	}
 	defer writer.Flush()
 
-	startLine := (opt.StartPg - 1) * opt.LineOfPg
-	endLine := opt.EndPg*opt.LineOfPg - 1
-
+	// Which file to use:
+	// 1. If filename given : fileName
+	// 2. Else : create a tempFile from Stdin
 	var file *os.File
 	if fileName != "" {
+		// use given filename
 		file, _ = os.Open(fileName)
 	} else {
+		// create a temp file
 		file, _ = ioutil.TempFile("./", "temp")
 		defer os.Remove(file.Name())
+
 		tempScanner := bufio.NewScanner(os.Stdin)
 		for tempScanner.Scan() {
 			file.WriteString(tempScanner.Text())
 			file.WriteString("\n")
 		}
+
 	}
 	defer file.Close()
 
 	if opt.Fmode {
-		// Mode 2
+		// Mode 2 :
+		// Paging with /f
 		fReader := bufio.NewReader(file)
-		for i := 0; i < startLine; i++ {
+
+		for i := 0; i < opt.StartPg; i++ {
 			_, err := fReader.ReadString('\f')
 
 			if err != nil || err == io.EOF {
@@ -130,7 +136,7 @@ func processInput() {
 			}
 		}
 
-		for i := startLine; i <= endLine; i++ {
+		for i := opt.StartPg; i <= opt.EndPg; i++ {
 			page, err := fReader.ReadString('\f')
 
 			if err == nil || err == io.EOF {
@@ -145,7 +151,12 @@ func processInput() {
 			}
 		}
 	} else {
-		// Mode 1
+		// Mode 1 :
+		// Paging by calculate lines
+		startLine := (opt.StartPg - 1) * opt.LineOfPg
+		endLine := opt.EndPg*opt.LineOfPg - 1
+
+		file, _ = os.Open(file.Name())
 		scanner := bufio.NewScanner(file)
 
 		for i := 0; i < startLine; i++ {
