@@ -34,7 +34,12 @@ func processArgs() {
 	// remainingArgs are filenames
 	remainingArgs, _ := flags.Parse(&opt)
 
-	// When filename not specified
+	// -help
+	if opt.StartPg == 0 && opt.EndPg == 0 {
+		os.Exit(0)
+	}
+
+	// fileName given?
 	if len(remainingArgs) == 0 {
 		fileName = ""
 	} else {
@@ -59,8 +64,8 @@ func processArgs() {
 	}
 
 	// check arg negative
-	if opt.StartPg <= 0 {
-		fmt.Fprintf(os.Stderr, "Error: page number <= 0\n")
+	if opt.StartPg < 0 {
+		fmt.Fprintf(os.Stderr, "Error: page number < 0\n")
 		os.Exit(2)
 	}
 
@@ -87,17 +92,19 @@ func processArgs() {
 
 func processInput() {
 
-	// write to dest or Stdout
+	// write to ?
+	// 1. Specified Device (dest)
+	// 2. Stdout
 	var writer *bufio.Writer
 	if opt.Dest != "" {
-		// write to dest
+		// 1. write to dest
 		cmd := exec.Command("lp", fmt.Sprintf("-d%s", opt.Dest))
 		stdinPipe, _ := cmd.StdinPipe()
 		defer stdinPipe.Close()
 		cmd.Stdout = os.Stdout
 		writer = bufio.NewWriter(stdinPipe)
 	} else {
-		//write to Stdout
+		// 2. write to Stdout
 		writer = bufio.NewWriter(os.Stdout)
 	}
 	defer writer.Flush()
@@ -107,10 +114,10 @@ func processInput() {
 	// 2. Else : create a tempFile from Stdin
 	var file *os.File
 	if fileName != "" {
-		// use given filename
+		// 1. given filename -> open file
 		file, _ = os.Open(fileName)
 	} else {
-		// create a temp file
+		// 2. stdin -> create a temp file
 		file, _ = ioutil.TempFile("./", "temp")
 		defer os.Remove(file.Name())
 
@@ -125,7 +132,7 @@ func processInput() {
 
 	if opt.Fmode {
 		// Mode 2 :
-		// Paging with /f
+		// Paging with '/f'
 		fReader := bufio.NewReader(file)
 
 		for i := 0; i < opt.StartPg; i++ {
@@ -140,7 +147,8 @@ func processInput() {
 			page, err := fReader.ReadString('\f')
 
 			if err == nil || err == io.EOF {
-				fmt.Printf("%#v\n", page)
+				writer.WriteString(page)
+				writer.WriteByte('\n')
 				if err == io.EOF {
 					break
 				}
@@ -152,7 +160,7 @@ func processInput() {
 		}
 	} else {
 		// Mode 1 :
-		// Paging by calculate lines
+		// Pages of fixed lines
 		startLine := (opt.StartPg - 1) * opt.LineOfPg
 		endLine := opt.EndPg*opt.LineOfPg - 1
 
