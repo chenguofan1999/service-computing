@@ -6,7 +6,7 @@
 
 **Level :** Learner project
 
-**What does this do :** 
+**What does it do :** 
 
 - Getting certain pages from a file or StdIn, 
 - Print it on Stdout or send it to your other device. 
@@ -78,7 +78,6 @@ done
 
 
 
-
 ### Case 1
 ```sh
 $ selpg -s1 -e1 input.txt
@@ -95,61 +94,6 @@ This command select page 1 to 1 of input.txt, with 72 lines (by default) each pa
 
 
 ![](pics/2.5.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -174,20 +118,6 @@ $ ./dataGen.sh | selpg -s10 -e20 -l2
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Case 4
 Write the result to a file, instead of printing it to stdout
 ```sh
@@ -201,37 +131,6 @@ Nothing in terminal ? Already writen to file !
 - output.txt:
 
     ![](pics/6.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -269,17 +168,6 @@ The combination of above 2 commands, result as follow:
 - error.txt
 
     ![](pics/10.png)
-
-
-
-
-
-
-
-
-
-
-
 
 
 
