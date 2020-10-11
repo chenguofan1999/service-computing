@@ -49,6 +49,20 @@ For better testing, a few test files were prepared:
 - output.txt to test receiving result
 - error.txt to receive the error message 
 - input.txt contains 1000 lines of data
+
+```
+Line 1
+Line 2
+Line 3
+Line 4
+Line 5
+Line 6
+Line 7
+Line 8
+...
+Line 1000
+```
+
 - dataGen generates the same result as input.txt, acting as an input command
 ```sh
 #!/bin/bash  
@@ -58,10 +72,19 @@ echo Line $i;
 done  
 ```
 
+### Install
+
+To make commands cleaner, install it
+
+```go
+go install ./selpg.go
+```
+
+
 
 ### Case 1
 ```sh
-$ ./selpg -s1 -e1 input.txt
+$ selpg -s1 -e1 input.txt
 ```
 
 
@@ -131,7 +154,7 @@ For better display, will add -l for all remaining tests
 ### Case 2
 
 ```sh
-$ ./selpg -s1 -e1 -l5 < input.txt
+$ selpg -s1 -e1 -l5 < input.txt
 ```
 
 ![](pics/3.png)
@@ -140,7 +163,7 @@ $ ./selpg -s1 -e1 -l5 < input.txt
 
 Redirect other command's output as the input of selpg
 ```sh
-$ ./dataGen.sh | ./selpg -s10 -e20 -l2
+$ ./dataGen.sh | selpg -s10 -e20 -l2
 ```
 
 ![](pics/4.png)
@@ -164,7 +187,7 @@ $ ./dataGen.sh | ./selpg -s10 -e20 -l2
 ### Case 4
 Write the result to a file, instead of printing it to stdout
 ```sh
-$ ./selpg -s10 -e20 -l2 input.txt > output.txt 
+$ selpg -s10 -e20 -l2 input.txt > output.txt 
 ```
 
 ![](pics/5.png)
@@ -214,7 +237,7 @@ already writen to file!
 Redirect error message from Stderr to error.txt
 
 ```sh
-$ ./selpg -s20 -e10 -l2 input.txt 2> error.txt 
+$ selpg -s20 -e10 -l2 input.txt 2> error.txt 
 ```
 This command is obviously wrong as the startPageNumber is larger than the endPageNumber
 
@@ -230,7 +253,7 @@ Error message was redirected to another file.
 ### Case 6
 
 ```sh
-$ ./selpg -s10 -e20 -l2 input.txt > output.txt 2> error.txt 
+$ selpg -s10 -e20 -l2 input.txt > output.txt 2> error.txt 
 ```
 
 The combination of above 2 commands, result as follow:
@@ -259,7 +282,7 @@ The combination of above 2 commands, result as follow:
 ### Case 7 
 
 ```sh
-$ ./selpg -s10 -e20 -l2 input.txt > output.txt 2> /dev/null
+$ selpg -s10 -e20 -l2 input.txt > output.txt 2> /dev/null
 ```
 
 would drop error message, result same as above([case 6](#6)).
@@ -268,7 +291,7 @@ would drop error message, result same as above([case 6](#6)).
 ### Case 8
 
 ```sh
-$ ./selpg -s10 -e20 -l2 -f input.txt > /dev/null
+$ selpg -s10 -e20 -l2 -f input.txt > /dev/null
 ```
 
 would drop output, show error message
@@ -278,7 +301,7 @@ would drop output, show error message
 ### Case 9
 
 ```sh
-$ ./selpg -s10 -e20 -l2 input.txt | wc  
+$ selpg -s10 -e20 -l2 input.txt | wc  
 ```
 
 This would redirect output of selpg command to **wc** as input, which gives the count of lines \ words \ chars.
@@ -288,7 +311,7 @@ This would redirect output of selpg command to **wc** as input, which gives the 
 ### Case 10
 
 ```sh
-$ ./selpg -s10004 -e10009 -l2 input.txt 2> error.txt | wc     
+$ selpg -s10004 -e10009 -l2 input.txt 2> error.txt | wc     
 ```
 
 Similar to [9](#9), but redirect error message to error.txt.  
