@@ -87,12 +87,15 @@ go install ./selpg.go
 $ selpg -s1 -e1 input.txt
 ```
 
-
+This command select page 1 to 1 of input.txt, with 72 lines (by default) each page.
 
 
 ![](pics/2.png)
 
-...
+.  
+.  
+.
+
 
 ![](pics/2.5.png)
 
@@ -391,7 +394,7 @@ func main() {
 1. Process the arguments, including options and potential filename. Throwing error if arguments illegal.
 2. Process input (file or stdin), implementing the operation of selecting pages.
 
-### Process Arguments
+### Function : Process Arguments
 
 
 ```go
@@ -460,13 +463,13 @@ func processArgs() {
 
 
 
-### Process Input
+### Function : Process Input
 
 Basically 3 parts:
 
-1. **Write Destination** : Stdout **/** Specified Device -> writer  
+1. **Decide Write Destination** : Stdout **/** Specified Device -> writer  
 
-    A little tricky, need to use Pipe.  
+    A little tricky, need to use Pipe when write to device.  
     The purpose of this part is to get **writer** (of type *bufio.Writer).
 
     ```go
@@ -491,7 +494,7 @@ Basically 3 parts:
 
     ```
 
-2. **Read Source** : Stdin **/** Specified File -> file
+2. **Decide Read Source** : Stdin **/** Specified File -> file
 
     The goal of this part is to get **file** (of type *os.File) 
     - It would be pleasant if the filename is given -> Just open it using os.Open().  
@@ -520,7 +523,7 @@ Basically 3 parts:
         defer file.Close()
     ```
 
-3. **Paging Mode** : '/f' Mode (Mode 2) **/** fixed lines Mode (Mode 1) 
+3. **Choose Paging Mode** : '/f' Mode (Mode 2) **/** fixed lines Mode (Mode 1) 
 
     The logic of 'Page Selecting' is very simple : 
     - jumping the first few lines / pages of **file** (from step 2), 
