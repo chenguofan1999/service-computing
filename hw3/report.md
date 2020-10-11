@@ -6,7 +6,7 @@
 
 **Level :** Learner project
 
-**Function :** 
+**What does this do :** 
 
 - Getting certain pages from a file or StdIn, 
 - Print it on Stdout or send it to your other device. 
