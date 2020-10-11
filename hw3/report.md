@@ -12,18 +12,22 @@
 - Print it on Stdout or send it to your other device. 
 - A page could consist of fixed number(you choose) of lines or end with '**/f**'
 
-## Usage 
 
+## Install
 
+To make it easier to use this tool, install it:  
 Go to the program directory and type in this in terminal,
+
 ```sh
-$ ./selpg -h
+go install ./selpg.go
 ```
 
-And you will get help infomation:
+## Usage
+
+You can get help infomation by:
 
 ```
-$ ./selpg -h               
+$ selpg -h               
 Usage:
   selpg [OPTIONS]
 
@@ -72,13 +76,6 @@ echo Line $i;
 done  
 ```
 
-### Install
-
-To make commands cleaner, install it
-
-```sh
-go install ./selpg.go
-```
 
 
 
