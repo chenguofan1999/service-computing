@@ -10,7 +10,7 @@
 
 - Getting certain pages from a file or StdIn, 
 - Print it on Stdout or send it to your other device. 
-- A page could consist of fixed number(you choose) of lines or marked by '**/f**'
+- A page could consist of fixed number(you choose) of lines or end with '**/f**'
 
 ## Usage 
 
