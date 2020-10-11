@@ -76,7 +76,7 @@ done
 
 To make commands cleaner, install it
 
-```go
+```sh
 go install ./selpg.go
 ```
 
@@ -196,13 +196,11 @@ $ selpg -s10 -e20 -l2 input.txt > output.txt
 
 ![](pics/5.png)
 
-nothing in terminal ?
+Nothing in terminal ? Already writen to file !
 
-![](pics/6.png)
+- output.txt:
 
-already writen to file!
-
-
+    ![](pics/6.png)
 
 
 
@@ -247,11 +245,11 @@ This command is obviously wrong as the startPageNumber is larger than the endPag
 
 ![](pics/7.png)
 
-Noting was printed
+Noting was printed. Error message was already redirected to error.txt:
 
 ![](pics/8.png)
 
-Error message was redirected to another file.
+
 
 
 ### Case 6
@@ -264,9 +262,13 @@ The combination of above 2 commands, result as follow:
 
 ![](pics/9.png)
 
-![](pics/6.png)
+- output.txt
 
-![](pics/10.png)
+    ![](pics/6.png)
+
+- error.txt
+
+    ![](pics/10.png)
 
 
 
@@ -324,7 +326,9 @@ Here startPageNumber apparently exceeds input file, thus
 
 ![](pics/13.png)
 
-![](pics/14.png)
+- error.txt
+
+    ![](pics/14.png)
 
 ### **One more thing**
 
