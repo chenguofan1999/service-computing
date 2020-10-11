@@ -92,6 +92,10 @@ $ selpg -s1 -e1 input.txt
 
 ![](pics/2.png)
 
+...
+
+![](pics/2.5.png)
+
 
 
 
