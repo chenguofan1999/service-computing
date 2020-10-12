@@ -9,7 +9,7 @@
 **What does it do :** 
 
 - Getting certain pages from a file or StdIn, 
-- Print it on Stdout or send it to your other device. 
+- Print it on `Stdout` or send it to your other device. 
 - A page could consist of fixed number(you choose) of lines or end with `'/f'`
 
 
@@ -69,7 +69,7 @@ Line 8
 Line 1000
 ```
 
-- `dataGen.sh` generates the same result as input.txt, acting as an input command
+- `dataGen.sh` generates the same result as `input.txt`, acting as an input command
 ```sh
 #!/bin/bash  
 for i in {1..1000}  
@@ -85,7 +85,7 @@ done
 $ selpg -s1 -e1 input.txt
 ```
 
-This command select page 1 to 1 of input.txt, with 72 lines (by default) each page.
+This command select page 1 to 1 of `input.txt`, with 72 lines (by default) each page.
 
 
 ![](pics/2.png)
