@@ -10,7 +10,7 @@
 
 - Getting certain pages from a file or StdIn, 
 - Print it on Stdout or send it to your other device. 
-- A page could consist of fixed number(you choose) of lines or end with '**/f**'
+- A page could consist of fixed number(you choose) of lines or end with `'/f'`
 
 
 ## Install
@@ -44,6 +44,8 @@ Help Options:
 
 Yep, that's how you gonna use it.
 
+**Notice:** `-s` and `-e` are necessary options.
+
 ## Tests
 
 For better testing, a few test files were prepared:
@@ -67,7 +69,7 @@ Line 8
 Line 1000
 ```
 
-- dataGen generates the same result as input.txt, acting as an input command
+- `dataGen.sh` generates the same result as input.txt, acting as an input command
 ```sh
 #!/bin/bash  
 for i in {1..1000}  
@@ -97,7 +99,7 @@ This command select page 1 to 1 of input.txt, with 72 lines (by default) each pa
 
 
 
-For better display, will add -l for all remaining tests
+For better display, will add `-l` for all remaining tests
 
 ### Case 2
 
@@ -135,7 +137,7 @@ Nothing in terminal ? Already writen to file !
 
 
 ### Case 5 
-Redirect error message from Stderr to error.txt
+Redirect error message from `Stderr` to `error.txt`
 
 ```sh
 $ selpg -s20 -e10 -l2 input.txt 2> error.txt 
@@ -210,7 +212,7 @@ $ selpg -s10004 -e10009 -l2 input.txt 2> error.txt | wc
 
 Similar to [9](#9), but redirect error message to error.txt.  
 Here startPageNumber apparently exceeds input file, thus   
-**wc** receives nothing and error message was sent.
+`wc` receives nothing and error message was sent.
 
 ![](pics/13.png)
 
@@ -352,7 +354,7 @@ func processArgs() {
 
 Basically 3 parts:
 
-1. **Decide Write Destination** : Stdout **/** Specified Device -> writer  
+1. **Decide Write Destination** : `Stdout` / **Specified Device** -> writer  
 
     A little tricky, need to use Pipe when write to device.  
     The purpose of this part is to get **writer** (of type *bufio.Writer).
@@ -379,7 +381,7 @@ Basically 3 parts:
 
     ```
 
-2. **Decide Read Source** : Stdin **/** Specified File -> file
+2. **Decide Read Source** : `Stdin` / **Specified File** -> file
 
     The goal of this part is to get **file** (of type *os.File) 
     - It would be pleasant if the filename is given -> Just open it using os.Open().  
@@ -408,7 +410,7 @@ Basically 3 parts:
         defer file.Close()
     ```
 
-3. **Choose Paging Mode** : '/f' Mode (Mode 2) **/** fixed lines Mode (Mode 1) 
+3. **Choose Paging Mode** : `/f Mode` (Mode 2) / `fixed lines Mode` (Mode 1) 
 
     The logic of 'Page Selecting' is very simple : 
     - jumping the first few lines / pages of **file** (from step 2), 
