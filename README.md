@@ -4,15 +4,15 @@
 
 **Requirements:** TDD lab report of an arbitrary algorithm, in golang.
 
-**Report:** [here](hw2/report.md)
+**Report:** [Golang实现快速排序](hw2/report.md)
 
 ## HW3
 
-**Requirements:** [here](https://pmlpml.gitee.io/service-computing/post/ex-cli-basic/)
+**Requirements:** [CLI 命令行实用程序开发基础](https://pmlpml.gitee.io/service-computing/post/ex-cli-basic/)
 
-**Report:** [here](hw3/report.md)
+**Report:** [Implementing CLI tool Selpg in Golang](hw3/report.md)
 
 ## HW4
 
-**Requirements:** [here](https://pmlpml.gitee.io/service-computing/post/ex-pkg-ini/)  
-**Repo:** [here](https://github.com/chenguofan1999/iniReader)
+**Requirements:** [程序包开发，读简单配置文件 v1](https://pmlpml.gitee.io/service-computing/post/ex-pkg-ini/)  
+**Repo:** [chenguofan1999/iniReader](https://github.com/chenguofan1999/iniReader)
