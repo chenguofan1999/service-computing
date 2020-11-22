@@ -15,4 +15,15 @@
 ## HW4
 
 **Requirements:** [程序包开发，读简单配置文件 v1](https://pmlpml.gitee.io/service-computing/post/ex-pkg-ini/)  
-**Repo:** [chenguofan1999/iniReader](https://github.com/chenguofan1999/iniReader)
+**Repo:** [github.com/chenguofan1999/iniReader](https://github.com/chenguofan1999/iniReader)
+
+## HW5
+
+**Requirements:** [程序包开发，读简单配置文件 v1](https://pmlpml.gitee.io/service-computing/post/ex-pkg-ini/)  
+**Repo:** [github.com/chenguofan1999/marshal](https://github.com/chenguofan1999/iniReader)
+
+## HW7
+
+**Requirements:** [web 服务器端编程](https://pmlpml.gitee.io/service-computing/post/service-2-go-server-programming/)  
+**Repo:** [github.com/chenguofan1999/cloudgo](https://github.com/chenguofan1999/cloudgo)
+
