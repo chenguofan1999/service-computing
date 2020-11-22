@@ -19,8 +19,8 @@
 
 ## HW5
 
-**Requirements:** [程序包开发，读简单配置文件 v1](https://pmlpml.gitee.io/service-computing/post/ex-pkg-ini/)  
-**Repo:** [github.com/chenguofan1999/marshal](https://github.com/chenguofan1999/iniReader)
+**Requirements:** [Json格式序列化](https://pmlpml.gitee.io/service-computing/post/ex-command-json/)  
+**Repo:** [github.com/chenguofan1999/marshal](https://github.com/chenguofan1999/marshal)
 
 ## HW7
 
